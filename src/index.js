@@ -4,7 +4,7 @@ import axios from "axios";
 import App from './App';
 import './index.css'
 
-axios.defaults.baseURL = 'http://localhost:7000/api/'
+axios.defaults.baseURL = 'https://expense-infx.herokuapp.com/api/'
 
 ReactDOM.render(
   <React.StrictMode>
