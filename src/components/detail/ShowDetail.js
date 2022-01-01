@@ -5,7 +5,7 @@ import styled from "styled-components"
 import { ReactComponent as Edit } from "../../asset/icons/edit.svg";
 import { ReactComponent as Delete } from "../../asset/icons/delete.svg";
 
-const Navbar = () => {
+const ShowDetail = () => {
 
     const [formData, setFormData] = useState([]);
 	const token = localStorage.getItem("user-token");
@@ -111,7 +111,7 @@ const Navbar = () => {
     )
 }
 
-export default Navbar
+export default ShowDetail
 
 const Container = styled.div`
     width: 100%;

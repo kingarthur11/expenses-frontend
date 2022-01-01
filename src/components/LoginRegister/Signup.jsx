@@ -1,58 +1,45 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components/macro";
-import ReactLoading from "react-loading";
-import { RegisterUser } from "../../actions/user";
 
 const Signup = () => {
-	const history = useHistory();
-	const [loading, setLoading] = useState(false);
-	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
-	const [phone_number, setPhoneNumber] = useState("");
+	const [name, setName] = useState("");
+	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [password_confirmation, setC_Password] = useState("");
 
-	const handleSubmit = (e) => {
-		e.preventDefault();
-		setLoading(true);
-		dispatch(
-			RegisterUser(
-				{
-					password,
-					password_confirmation,
-					phone_number,
-				},
-				history
-			)
-		);
-	};
-
-	// const postData = (e) => {
-	//     e.preventDefault()
-	//     axios.post(`user/register`, {
-	//       password,
-	//       password_confirmation,
-	//       phone_number,
-	//     }).then(response => {
-	//       history.push("./login")
-	//     }).catch(e => {
-	//       console.log(e);
-	//     });
-	// }
+	const postData = (e) => {
+	    e.preventDefault()
+	    axios.post(`auth/register`, {
+	      password,
+	      password_confirmation,
+	      name,
+		  email,
+	    }).then(response => {
+			navigate("/login");
+	    }).catch(e => {
+	      console.log(e);
+	    });
+	}
 
 	return (
 		<Container>
 			<Wrapper>
-				<h2>Dashboard</h2>
 				<p>Complete your registration to continue</p>
 				<Form>
-					<form onSubmit={handleSubmit}>
+					<form onSubmit={postData}>
 						<input
 							type="text"
-							placeholder="PHONE"
-							onChange={(e) => setPhoneNumber(e.target.value)}
+							placeholder="NAME"
+							onChange={(e) => setName(e.target.value)}
+						/>
+						<input
+							type="text"
+							placeholder="EMAIL"
+							onChange={(e) => setEmail(e.target.value)}
 						/>
 						<input
 							type="password"
@@ -67,7 +54,8 @@ const Signup = () => {
 						<Button
 							type="submit"
 							className={
-								phone_number !== "" &&
+								name !== "" &&
+								email !== "" &&
 								password !== "" &&
 								password_confirmation !== ""
 									? "active"
@@ -85,9 +73,6 @@ const Signup = () => {
 							</Link>
 						</span>
 					</div>
-					<Load loading={loading}>
-						<ReactLoading type={"spin"} color="#000" />
-					</Load>
 				</Form>
 			</Wrapper>
 		</Container>

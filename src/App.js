@@ -1,5 +1,6 @@
 import Login from './components/LoginRegister/Login';
-import Navbar from './components/navbar/Navbar';
+import Signup from './components/LoginRegister/Signup';
+import Navbar from './components/detail/ShowDetail';
 import { BrowserRouter as Router, Routes , Route } from "react-router-dom";
 
 import RequestForm from './components/RequestForm/request';
@@ -24,11 +25,11 @@ function App() {
             exact
             element={<Login />}
           />
-          {/* <Route
+          <Route
             path="/signup"
             exact
-            element={<Login />}
-          /> */}
+            element={<Signup />}
+          />
 				</Routes>
 			</Router>
 		</>
