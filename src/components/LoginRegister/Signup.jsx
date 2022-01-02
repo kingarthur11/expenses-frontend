@@ -84,8 +84,6 @@ export default Signup;
 //styles
 const Container = styled.section`
 	display: flex;
-	// justify-content: center;
-	// align-items: center;
 	background: #caced5;
 	padding: 4rem 10rem;
 
@@ -169,20 +167,6 @@ const Form = styled.div`
 		margin-bottom: 15px;
 	}
 
-	//   button {
-	//     display: flex;
-	//     justify-content: center;
-	//     align-items: center;
-	//     padding: 10px 20px;
-	//     width: 100%;
-	//     outline: none;
-	//     border: none;
-	//     background: #a4c2f2;
-	//     color: #fff;
-	//     font-size: 12px;
-	//     cursor: pointer;
-	//   }
-
 	div {
 		color: #3b86ff;
 		font-size: 1.1rem;
@@ -212,14 +196,4 @@ const Button = styled.button`
 	color: #fff;
 	font-size: 15px;
 	cursor: pointer;
-`;
-const Load = styled.div`
-	display: ${({ loading }) => (loading ? "flex" : "none")};
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
 `;

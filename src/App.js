@@ -1,19 +1,21 @@
 import Login from './components/LoginRegister/Login';
 import Signup from './components/LoginRegister/Signup';
-import Navbar from './components/detail/ShowDetail';
+import ShowDetails from './components/detail/ShowDetail';
 import { BrowserRouter as Router, Routes , Route } from "react-router-dom";
 
 import RequestForm from './components/RequestForm/request';
+import NavBar from './components/Navbar/Navbar';
 
 function App() {
   return (
     <>
       <Router>
+        <NavBar/>
 				<Routes >
           <Route
             path="/"
             exact
-            element={<Navbar />}
+            element={<ShowDetails />}
           />
           <Route
 						path="/expense-form"
