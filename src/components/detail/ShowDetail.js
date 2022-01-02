@@ -237,6 +237,10 @@ const Response = styled.div`
     display: flex;
     background: rgba(255,255,255,1);
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+    @media screen and (max-width: 1300px) {
+		width: 900px;
+	}
     
     img {
         width: 200px;
