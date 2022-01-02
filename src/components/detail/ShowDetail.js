@@ -16,7 +16,7 @@ const ShowDetail = () => {
 
 	const retrieveExpenses = () => {
 		axios
-			.get(`expense/getall`, config)
+			.get(`expense/getall`)
 			.then((response) => {
 				setFormData(response.data);
 			})
@@ -32,7 +32,12 @@ const ShowDetail = () => {
 	};
 
     const localDelete = (dateData, title) => {
-		let localInfo = [...localForm]
+		
+        // console.log(localInfo === null)
+        if(localForm === null) {
+			return {};
+		}
+        let localInfo = [...localForm]
 		localInfo.filter(function (item) {
             return item.dateData !== dateData && item.title !== title
 		  });
