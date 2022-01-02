@@ -20,6 +20,12 @@ const Navbar = () => {
 			<Nav>
 				<NavChild>
 					<NavMenu>
+					<Button
+						to="/"
+						style={{ background: "#3B86FF", marginRight: "20px" }}
+					>
+						Home
+					</Button>
 					{user ? (
 						<>
 							<Button
