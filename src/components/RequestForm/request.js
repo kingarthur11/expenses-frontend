@@ -7,6 +7,7 @@ import styled from "styled-components"
 const RequestForm = () => {
 
 	const { id } = useParams();
+	
 	const navigate = useNavigate ();
 
 	const token = localStorage.getItem("user-token");
@@ -14,14 +15,16 @@ const RequestForm = () => {
 	const config = {
 		headers: { Authorization: `Bearer ${token}` },
 	};
-
 	const [expense, setExpense] = useState({
 		title: "",
 		amount: "",
 		dateData: "",
 		expense_type: "",
 	});
-
+	const [expenseData, setExpenseData] = useState([]);
+	// const expenseInfo = id ? expenseData.find((p) => console.log(p._id == id)) : null;
+	const expenseInfo = id ? expenseData.find((p) => p._id == id) : null;
+	// console.log(expenseInfo)
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 		if (id) {
@@ -33,7 +36,10 @@ const RequestForm = () => {
 	};
 
 	const updateData = async () => {
-		await axios.put(`expense/update/${id}`, expense, config);
+		let {title, amount, dateData, expense_type} = expense
+		// console.log(title, amount, dateData, expense_type, expense )
+		await axios.put(`expense/update/${id}`, 
+		{title, amount, dateData, expense_type}, config);
 		navigate("/");
 	};
 
@@ -68,7 +74,18 @@ const RequestForm = () => {
 		setExpense({ ...expense, [e.target.name]: e.target.value });
 	};
 
-	
+	const retrieveExpense = async () => {
+		const response = await axios.get(`expense/getall`);
+		setExpenseData(response.data);
+	};
+
+	useEffect(() => {
+		if (expenseInfo) setExpense(expenseInfo);
+	}, [expenseInfo]);
+
+	useEffect(() => {
+		retrieveExpense()
+	}, []);
 
     return (
         <Container>
@@ -87,12 +104,12 @@ const RequestForm = () => {
 											placeholder="TITLE"
 											name="title"
 											onChange={onChange}
-											value={expense.title}
+											value={expense?.title}
 											required
 										/>
                                         <label>Expenses Type</label>
                                         <select
-                                            value={expense.expense_type}
+                                            value={expense?.expense_type}
                                             name="expense_type"
                                             onChange={onChange}
                                         >
@@ -107,7 +124,7 @@ const RequestForm = () => {
 											type="date" 
 											name="dateData" 
 											placeholder="dd-mm-yyyy" 
-											value={expense.dateData}
+											value={expense?.dateData}
 											onChange={onChange}
 											min="1997-01-01" 
 											max="2023-12-31"/>
@@ -117,7 +134,7 @@ const RequestForm = () => {
 											placeholder="AMOUNT"
 											name="amount"
 											onChange={onChange}
-											value={expense.amount}
+											value={expense?.amount}
 											required
 										/>
                                         <button type="submit">{id ? "UPDATE" : "CREATE"}</button>

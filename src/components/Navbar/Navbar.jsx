@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled, { css } from "styled-components/macro";
-// import Sidebar from "../Sidebar/Sidebar";
 
 const Navbar = () => {
 	const [isopen, setisopen] = useState(false);

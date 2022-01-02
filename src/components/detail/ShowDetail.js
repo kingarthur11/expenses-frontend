@@ -11,9 +11,6 @@ const ShowDetail = () => {
 	const token = localStorage.getItem("user-token");
     const localForm = JSON.parse(localStorage.getItem("localData"));
     
-    
-    
-
 	const config = {
 		headers: { Authorization: `Bearer ${token}` },
 	};
@@ -110,26 +107,17 @@ const ShowDetail = () => {
                                             <td>{data.amount}</td>
                                             <td>{data.expense_type}</td>
                                             <td>
-                                                <button style={{ marginRight: "10px" }}>
-                                                    {" "}
-                                                    <Edit />{" "}
-                                                </button>{" "}
+                                                <Link to={`/expense-form/edit/${data._id}`}>
+                                                    <button style={{ marginRight: "10px" }}>
+                                                        {" "}
+                                                        <Edit expense_id={data._id} />{" "}
+                                                    </button>{" "}
+                                                </Link>
                                                 <button 
                                                     onClick={() => token ? onDelete(data._id) : localDelete(data.dateData, data.title)}>
                                                     <Delete />{" "}
                                                 </button>
                                             </td>
-                                            {/* <td>
-                                                <Link to={`/admin-dashboard/edit/${data.id}`}>
-                                                    <button onClick={showEdit} style={{ marginRight: "10px" }}>
-                                                        {" "}
-                                                        <Edit userid={data.id} />{" "}
-                                                    </button>{" "}
-                                                </Link>
-                                                <button onClick={() => onDelete(data.id)}>
-                                                    <Delete />{" "}
-                                                </button>
-                                            </td> */}
                                         </tr>
                                     );
                                 })}
