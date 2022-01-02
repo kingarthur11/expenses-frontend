@@ -90,6 +90,9 @@ const Nav = styled.section`
 	@media screen and (max-width: 450px) {
 		padding: 0 2rem;
 	}
+	@media screen and (max-width: 768px) {
+		height: 5rem;
+	}
 `;
 
 const NavChild = styled.div`
@@ -107,7 +110,7 @@ const NavMenu = styled.div`
 	}
 
 	@media screen and (max-width: 768px) {
-		display: none;
+		display: flex;
 	}
 `;
 
@@ -119,4 +122,8 @@ const Button = styled(Link)`
 	font-weight: 800;
 	color: #fff;
     text-decoration: none;
+
+	@media screen and (max-width: 768px) {
+		padding: 8px 12px;
+	}
 `;

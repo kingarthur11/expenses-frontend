@@ -227,6 +227,9 @@ const SearchBar = styled.div`
     i {
         color: 
     }
+    @media screen and (max-width: 768px) {
+		display: none;
+	}
 `
 
 const Response = styled.div`
