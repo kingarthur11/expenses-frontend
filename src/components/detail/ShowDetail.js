@@ -10,6 +10,10 @@ const ShowDetail = () => {
     const [formData, setFormData] = useState([]);
 	const token = localStorage.getItem("user-token");
     const localForm = JSON.parse(localStorage.getItem("localData"));
+    
+    
+    
+
 	const config = {
 		headers: { Authorization: `Bearer ${token}` },
 	};
@@ -45,9 +49,33 @@ const ShowDetail = () => {
         localStorage.setItem('localData', JSON.stringify(formData));
 	};
 
+    // for (let i = 0; i < localForm.length; i++) {
+    //     console.log(localForm[i])
+    //     // await axios.post("expense/create", item, config);
+    //     // formData.push(item);
+    // } 
+
+    const handleLocalSubmit = async () => {
+        if(localForm === null) {
+			return {};
+		}
+        for (let i = 0; i < localForm.length; i++) {
+            await axios.post("expense/create", localForm[i], config);
+            // formData.push(item);
+        } 
+    };
+     
 	useEffect(() => {
 		retrieveExpenses();
 	}, []);
+
+    useEffect(() => {
+		if (token) {
+			handleLocalSubmit()
+			localStorage.removeItem("localData");
+            retrieveExpenses();
+		}
+	}, [token, localForm]);
 
     return (
         <Container> 

@@ -42,10 +42,11 @@ const RequestForm = () => {
 		let expenseDate = expense.dateData;
   		let expenseTitle = expense.title;
 		
-		if(!localForm) {
+		if(localForm === null) {
 			let formData = []
 			formData.push(expense);
 			localStorage.setItem('localData', JSON.stringify(formData));
+			return navigate("/");
 		}
 		let formData = [...localForm]
 		formData.filter(function (item) {
@@ -67,20 +68,7 @@ const RequestForm = () => {
 		setExpense({ ...expense, [e.target.name]: e.target.value });
 	};
 
-	const logOut = () => {
-		localStorage.removeItem("super-admin-token");
-		navigate("/admin-dashboard/login");
-	};
-
-	useEffect(() => {
-		if (token) {
-			let formData = [...localForm]
-			const handleSubmit = async () => {
-				await axios.post("expense/create", formData, config);
-			};
-			handleSubmit()
-		}
-	}, [token, localForm]);
+	
 
     return (
         <Container>
