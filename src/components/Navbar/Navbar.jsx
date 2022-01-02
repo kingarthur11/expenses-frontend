@@ -38,6 +38,12 @@ const Navbar = () => {
 							>
 								Login
 							</Button>
+							<Button
+								to="/signup"
+								style={{ background: "#3B86FF", marginRight: "20px" }}
+							>
+								Signup
+							</Button>
 						</>
 					) }	
 					</NavMenu>
