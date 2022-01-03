@@ -76,7 +76,6 @@ const ShowDetail = () => {
 
     return (
         <Container> 
-            <div>
                 <MainBody>
                     <div className='main-content'>
                         <SearchBar>
@@ -87,7 +86,7 @@ const ShowDetail = () => {
                         </SearchBar>
 						<Button to="/expense-form">Create</Button>
                         <Response>
-                        <Table>
+                            <Table>
                                 <tr>
                                     <th>#</th>
                                     <th>TITLE</th>
@@ -126,8 +125,6 @@ const ShowDetail = () => {
                         </Response>
                     </div>
                 </MainBody>
-            </div>
-            
         </Container>
     )
 }
@@ -142,10 +139,6 @@ const Table = styled.table`
 	border-collapse: collapse;
 	/* margin-bottom: 15px; */
 	width: 100%;
-
-	@media screen and (max-width: 1300px) {
-		width: 900px;
-	}
 
 	th {
 		background: #e9e9f0;
@@ -230,7 +223,8 @@ const Response = styled.div`
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 
     @media screen and (max-width: 1300px) {
-		width: 900px;
+		overflow-x: scroll;
+		width: 100%;
 	}
     
     img {

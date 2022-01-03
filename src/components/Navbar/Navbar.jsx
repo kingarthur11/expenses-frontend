@@ -16,44 +16,42 @@ const Navbar = () => {
 
 	return (
 		<>
-			<Nav>
-				<NavChild>
-					<NavMenu>
-					<Button
-						to="/"
-						style={{ background: "#3B86FF", marginRight: "20px" }}
-					>
-						Home
-					</Button>
-					{user ? (
-						<>
-							<Button
-								onClick={logOut}
-								to="/login"
-								style={{ background: "#3B86FF", marginRight: "20px" }}
-							>
-								Logout
-							</Button>
-						</>
-					) : (
-						<>
-							<Button
-								to="/login"
-								style={{ background: "#3B86FF", marginRight: "20px" }}
-							>
-								Login
-							</Button>
-							<Button
-								to="/signup"
-								style={{ background: "#3B86FF", marginRight: "20px" }}
-							>
-								Signup
-							</Button>
-						</>
-					) }	
-					</NavMenu>
-				</NavChild>
-			</Nav>
+			<NavChild>
+				<NavMenu>
+				<Button
+					to="/"
+					style={{ background: "#3B86FF", marginRight: "20px" }}
+				>
+					Home
+				</Button>
+				{user ? (
+					<>
+						<Button
+							onClick={logOut}
+							to="/login"
+							style={{ background: "#3B86FF", marginRight: "20px" }}
+						>
+							Logout
+						</Button>
+					</>
+				) : (
+					<>
+						<Button
+							to="/login"
+							style={{ background: "#3B86FF", marginRight: "20px" }}
+						>
+							Login
+						</Button>
+						<Button
+							to="/signup"
+							style={{ background: "#3B86FF", marginRight: "20px" }}
+						>
+							Signup
+						</Button>
+					</>
+				) }	
+				</NavMenu>
+			</NavChild>
 		</>
 	);
 };
