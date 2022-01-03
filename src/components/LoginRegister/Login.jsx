@@ -72,6 +72,8 @@ export default Login;
 //styles
 const Container = styled.section`
 	display: flex;
+	background: #caced5;
+	padding: 7rem 10rem;
 	
 	@media screen and (max-width: 1200px) {
 		padding: 4rem 8rem;

@@ -16,42 +16,44 @@ const Navbar = () => {
 
 	return (
 		<>
-			<NavChild>
-				<NavMenu>
-				<Button
-					to="/"
-					style={{ background: "#3B86FF", marginRight: "20px" }}
-				>
-					Home
-				</Button>
-				{user ? (
-					<>
-						<Button
-							onClick={logOut}
-							to="/login"
-							style={{ background: "#3B86FF", marginRight: "20px" }}
-						>
-							Logout
-						</Button>
-					</>
-				) : (
-					<>
-						<Button
-							to="/login"
-							style={{ background: "#3B86FF", marginRight: "20px" }}
-						>
-							Login
-						</Button>
-						<Button
-							to="/signup"
-							style={{ background: "#3B86FF", marginRight: "20px" }}
-						>
-							Signup
-						</Button>
-					</>
-				) }	
-				</NavMenu>
-			</NavChild>
+			<Nav>
+				<NavChild>
+					<NavMenu>
+					<Button
+						to="/"
+						style={{ background: "#3B86FF", marginRight: "20px" }}
+					>
+						Home
+					</Button>
+					{user ? (
+						<>
+							<Button
+								onClick={logOut}
+								to="/login"
+								style={{ background: "#3B86FF", marginRight: "20px" }}
+							>
+								Logout
+							</Button>
+						</>
+					) : (
+						<>
+							<Button
+								to="/login"
+								style={{ background: "#3B86FF", marginRight: "20px" }}
+							>
+								Login
+							</Button>
+							<Button
+								to="/signup"
+								style={{ background: "#3B86FF", marginRight: "20px" }}
+							>
+								Signup
+							</Button>
+						</>
+					) }	
+					</NavMenu>
+				</NavChild>
+			</Nav>
 		</>
 	);
 };
@@ -59,9 +61,9 @@ const Navbar = () => {
 export default Navbar;
 
 const Nav = styled.section`
-	height: 3rem;
+	height: 5rem;
 	width: 100%;
-	padding: 0 10rem 2rem;
+	/* padding: 0 10rem 2rem; */
 	background: #fff;
 	z-index: 100;
 	@media screen and (max-width: 1200px) {
@@ -98,6 +100,8 @@ const NavChild = styled.div`
 	align-items: center;
 `;
 const NavMenu = styled.div`
+	position: relative;
+	left: 4rem;
 	display: flex;
 	align-items: center;
 	padding-top: 25px;

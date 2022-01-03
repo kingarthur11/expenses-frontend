@@ -22,9 +22,7 @@ const RequestForm = () => {
 		expense_type: "",
 	});
 	const [expenseData, setExpenseData] = useState([]);
-	// const expenseInfo = id ? expenseData.find((p) => console.log(p._id == id)) : null;
 	const expenseInfo = id ? expenseData.find((p) => p._id == id) : null;
-	// console.log(expenseInfo)
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 		if (id) {
@@ -37,7 +35,6 @@ const RequestForm = () => {
 
 	const updateData = async () => {
 		let {title, amount, dateData, expense_type} = expense
-		// console.log(title, amount, dateData, expense_type, expense )
 		await axios.put(`expense/update/${id}`, 
 		{title, amount, dateData, expense_type}, config);
 		navigate("/");

@@ -34,7 +34,6 @@ const ShowDetail = () => {
 
     const localDelete = (dateData, title) => {
 		
-        // console.log(localInfo === null)
         if(localForm === null) {
 			return {};
 		}
@@ -46,19 +45,12 @@ const ShowDetail = () => {
         localStorage.setItem('localData', JSON.stringify(formData));
 	};
 
-    // for (let i = 0; i < localForm.length; i++) {
-    //     console.log(localForm[i])
-    //     // await axios.post("expense/create", item, config);
-    //     // formData.push(item);
-    // } 
-
     const handleLocalSubmit = async () => {
         if(localForm === null) {
 			return {};
 		}
         for (let i = 0; i < localForm.length; i++) {
             await axios.post("expense/create", localForm[i], config);
-            // formData.push(item);
         } 
     };
      
@@ -169,7 +161,7 @@ const Table = styled.table`
 const MainBody = styled.div`
     background: rgba(249,249,249,1);
     width: 100%;
-    
+
     .main-content {
         padding-top: 3rem;
         padding-left: 3rem;

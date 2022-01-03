@@ -85,7 +85,7 @@ export default Signup;
 const Container = styled.section`
 	display: flex;
 	background: #caced5;
-	padding: 4rem 10rem;
+	padding: 3.83rem 10rem;
 
 	@media screen and (max-width: 1200px) {
 		padding: 4rem 8rem;
