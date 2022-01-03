@@ -23,6 +23,7 @@ const RequestForm = () => {
 	});
 	const [expenseData, setExpenseData] = useState([]);
 	const expenseInfo = id ? expenseData.find((p) => p._id == id) : null;
+	
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 		if (id) {
@@ -42,29 +43,55 @@ const RequestForm = () => {
 
 	const handleLocalStore = (event) => {
 		event.preventDefault();
+		if (id) {
+			LocalupdateData();
+		} 
+		else {
+			let expenseDate = expense.dateData;
+			let expenseTitle = expense.title;
+			
+			if(localForm === null) {
+				let formData = []
+				formData.push(expense);
+				localStorage.setItem('localData', JSON.stringify(formData));
+				return navigate("/");
+			}
+			let formData = [...localForm]
+			formData.filter(function (item) {
+				if(item.dateData == expenseDate && item.title == expenseTitle) {
+					navigate("/");
+				}
+				formData.push(expense);
+				localStorage.setItem('localData', JSON.stringify(formData));
+				navigate("/");
+			});
+		}
+		
+	};
+
+	const LocalupdateData = async () => {
+		
 		let expenseDate = expense.dateData;
   		let expenseTitle = expense.title;
 		
 		if(localForm === null) {
 			let formData = []
-			formData.push(expense);
+			let {_id, title, amount, dateData, expense_type} = expense
+			formData.push({_id, title, amount, dateData, expense_type});
 			localStorage.setItem('localData', JSON.stringify(formData));
 			return navigate("/");
+		} else {
+			let formData = [...localForm]
+			formData.filter(function (item) {
+				if(item.dateData == expenseDate && item.title == expenseTitle) {
+					navigate("/");
+				} else {
+					formData.push(expense);
+					localStorage.setItem('localData', JSON.stringify(formData));
+					navigate("/");
+				}
+			})
 		}
-		let formData = [...localForm]
-		formData.filter(function (item) {
-			if(item.dateData == expenseDate && item.title == expenseTitle) {
-				navigate("/");
-			}
-			formData.push(expense);
-			localStorage.setItem('localData', JSON.stringify(formData));
-			navigate("/");
-		  });
-	};
-
-	const LocalupdateData = async () => {
-		await axios.put(`expense/update/${id}`, expense, config);
-		navigate("/");
 	};
 
 	const onChange = (e) => {
