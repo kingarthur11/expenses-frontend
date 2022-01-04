@@ -10,6 +10,7 @@ const ShowDetail = () => {
     const [formData, setFormData] = useState([]);
 	const token = localStorage.getItem("user-token");
     const localForm = JSON.parse(localStorage.getItem("localData"));
+    const localupedateForm = JSON.parse(localStorage.getItem("updatelocalData"));
     
 	const config = {
 		headers: { Authorization: `Bearer ${token}` },
@@ -52,6 +53,18 @@ const ShowDetail = () => {
         for (let i = 0; i < localForm.length; i++) {
             await axios.post("expense/create", localForm[i], config);
         } 
+        for (let i = 0; i < localForm.length; i++) {
+            await axios.post("expense/update", localForm[i], config);
+        } 
+    };
+
+    const handleLocalupdate = async () => {
+        if(localupedateForm === null) {
+			return {};
+		}
+        for (let i = 0; i < localupedateForm.length; i++) {
+            await axios.post("expense/update", localupedateForm[i], config);
+        } 
     };
      
 	useEffect(() => {
@@ -65,6 +78,14 @@ const ShowDetail = () => {
             retrieveExpenses();
 		}
 	}, [token, localForm]);
+
+    useEffect(() => {
+		if (token) {
+			handleLocalupdate()
+			localStorage.removeItem("updatelocalData");
+            retrieveExpenses();
+		}
+	}, [token, localupedateForm]);
 
     return (
         <Container> 

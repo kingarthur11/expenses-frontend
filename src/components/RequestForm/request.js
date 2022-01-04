@@ -70,15 +70,13 @@ const RequestForm = () => {
 	};
 
 	const LocalupdateData = async () => {
-		
 		let expenseDate = expense.dateData;
   		let expenseTitle = expense.title;
-		
 		if(localForm === null) {
 			let formData = []
 			let {_id, title, amount, dateData, expense_type} = expense
 			formData.push({_id, title, amount, dateData, expense_type});
-			localStorage.setItem('localData', JSON.stringify(formData));
+			localStorage.setItem('updatelocalData', JSON.stringify(formData));
 			return navigate("/");
 		} else {
 			let formData = [...localForm]
@@ -87,7 +85,7 @@ const RequestForm = () => {
 					navigate("/");
 				} else {
 					formData.push(expense);
-					localStorage.setItem('localData', JSON.stringify(formData));
+					localStorage.setItem('updatelocalData', JSON.stringify(formData));
 					navigate("/");
 				}
 			})
